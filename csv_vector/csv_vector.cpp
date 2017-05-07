@@ -39,7 +39,7 @@ int main()
 		}
 	};
 
-
+    // http://www.cplusplus.com/reference/map/map/find/
 	map<string, int> mymap;
 	mymap.insert(make_pair("201", 1));
 	mymap.insert(make_pair("202", 2));
@@ -58,18 +58,34 @@ int main()
 		it++;
 	}
 	//--------------------------------------------------------
-	std::string s = " R:COM2,234,222,433,5643,66 5345,43:4234";
+	std::string s = " R:208, 206, 205, 202, 203, 204, 201, COM2";
 	std::stringstream ss(s);
 	ss.imbue(std::locale(std::locale(), new tokens()));
 	std::istream_iterator<std::string> begin(ss);
 	std::istream_iterator<std::string> end;
 	std::vector<std::string> vstrings(begin, end);
 	//std::copy(vstrings.begin(), vstrings.end(), std::ostream_iterator<std::string>(std::cout, "\n"));
-	std::copy(vstrings.begin(), vstrings.end(), std::ostream_iterator<std::string>(std::cout,  "\n"));
+//	std::copy(vstrings.begin(), vstrings.end(), std::ostream_iterator<std::string>(std::cout,  "\n"));
 
 	cout << vstrings.size() << endl;
-	//cout << mymap[vstrings[1]] << endl;	
-	
+
+	vector <string>::iterator itv = vstrings.begin();
+
+	//	cout << mymap["201"] << endl;
+	while (itv != vstrings.end())
+	{
+		cout << *itv   << endl;
+		it = mymap.find(*itv);
+		if (it != mymap.end())
+		{
+			cout << "Relay No. " << it->second << endl;
+		}
+
+		itv++;
+	}
+
+
+ 
 	
 	return 0;
 }
